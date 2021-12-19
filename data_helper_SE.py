@@ -155,7 +155,7 @@ def get_args():
     parser.add_argument('--output_folder', type=str, default='output/train data/SE')
     parser.add_argument('--id_col', type=str, default='sno', help='點的編號欄位')
     parser.add_argument('--group_col', type=str, default='sarea', help='群組欄位(youbike 資料以區為單位分區域)')
-    parser.add_argument('--group', type=str, default=None, help='使用的群組(需要指定 group_col)，格式: 士林區,文山區')
+    parser.add_argument('--group', type=str, default=None, help='使用的群組(需要指定 group_col)，格式: XX區,XX區')
     parser.add_argument('--use_group', type=bool, default=False, help='是否要每個 group 分別去建立點之間的連結')
 
     parser.add_argument('--coordinate_col', type=str, default=None, help='點的經緯度欄位(當需要計算距離時)，格式: 24.1580,121.6222')
@@ -174,7 +174,7 @@ def get_args():
     parser.add_argument('--walk_length', type=int, default=80,  help='每個節點走訪的次數')
 
     # word2vec
-    parser.add_argument('--dimensions', type=int, default=64, help='Word2Vec 的輸出向量維度')
+    parser.add_argument('--dimensions', type=int, default=64, help='Word2Vec 的輸出向量維度，也是 SE 的維度')
     parser.add_argument('--window_size', type=int, default=10, help='Word2Vec 的 window size')
     parser.add_argument('--itertime', type=int, default=1000,  help='Word2Vec 的迭帶次數')
 
@@ -195,13 +195,16 @@ if __name__ == "__main__":
     Adj_file = os.path.join(args.output_folder, 'Adj.txt')
     SE_file = os.path.join(args.output_folder, 'SE.txt')
 
+    # SE存在時就結束
     if os.path.exists(SE_file):
         print("SE_file is already build at ({})".format(SE_file))
         exit()
 
+    # ADJ 資料
     if not os.path.exists(Adj_file):
         print("building Adj_file at ({})".format(Adj_file))
 
+        # 準備資料
         if args.group != None:
             if args.coordinate_col != None:
                 df = pd.read_csv(args.file_path, usecols=[args.id_col, args.coordinate_col, args.group_col], dtype=str)
@@ -224,6 +227,7 @@ if __name__ == "__main__":
 
         df = df[~df[args.coordinate_col].isna()]
         
+        # 建立區域內連結
         print("number of nodes: {}".format(df.shape[0]))
 
         if args.use_group & (len(group_use_ls) != 1): 
@@ -231,6 +235,7 @@ if __name__ == "__main__":
         else:
             df_AB = get_one_way_edge(df, group=None, coor_col=args.coordinate_col, id_col=args.id_col)
 
+        # 獲取各 edge 關係評估值
         print("shape of one way edge: {}".format(df_AB.shape))
         if args.distance_method ==  'linear distance':
             df_AB = get_linear_distance(df_AB) # 786 |308504 |2min 7s
@@ -239,9 +244,11 @@ if __name__ == "__main__":
 
         df_AB.to_csv(os.path.join(args.output_folder, 'one_way_edge_table_LD.csv'), index=False)
 
+        # 建立雙向 edge 和自己到自己 (可直接轉成 disatnce martix)
         df_2W = get_two_way_with_self(df, df_AB, coor_col=args.coordinate_col, id_col=args.id_col)
         df_2W.to_csv(os.path.join(args.output_folder, 'two_way_edge_table_LD.csv'), index=False)
 
+        # 計算 adj 值 (基於 GMAN 論文上的算法，越小關係越大)
         df_2W_adj = get_adj_value(df_2W, threshold=args.adj_threshold)
         df_2W_adj.to_csv(os.path.join(args.output_folder, 'two_way_edge_table_LD(adj).csv'), index=False)
 
@@ -249,7 +256,7 @@ if __name__ == "__main__":
 
     print("building SE_file at ({})".format(SE_file))
 
-    # train Node2Vec
+    # 訓練 Note2Vec 資料 (使用原始 GMAN 作者的程式碼 -> https://github.com/zhengchuanpan/GMAN/tree/master/PeMS/node2vec)
     train_node2vec = generateSE.SEDataHelper(
             is_directed=args.is_directed, p=args.p, q=args.q, 
             num_walks=args.num_walks, walk_length=args.walk_length,
