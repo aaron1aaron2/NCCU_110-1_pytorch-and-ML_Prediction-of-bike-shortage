@@ -1,12 +1,12 @@
-import os
-import re
-import json
 # encoding: utf-8
 """
 @ author: yen-nan ho
 @ contact: aaron1aaron2@gmail.com
 @ date: 2021.12.2
 """
+import os
+import re
+import json
 import tqdm
 import argparse
 import pandas as pd
@@ -29,7 +29,7 @@ output_folder = args.output_folder
 
 os.makedirs(output_folder, exist_ok=True)
 spot_feature = ['sno', 'sna', 'tot', 'sarea', 'lat', 'lng', 'ar', 'sareaen', 'snaen', 'aren']
-dynamic_feature = ['sno', 'sbi', 'bemp', 'act', 'date', 'time']
+dynamic_feature = ['sno', 'sarea', 'sbi', 'bemp', 'act', 'date', 'time']
 
 if glob.glob(f'{args.crawler_output_folder}/*.json') != []:
     # 直接在 output
