@@ -4,7 +4,7 @@
 Author: yen-nan ho
 Contact: aaron1aaron2@gmail.com
 GitHub: https://github.com/aaron1aaron2
-Create Date:  20211212
+Create Date:  2021.12.12
 
 [Original]
 Author: VincLee8188
@@ -27,7 +27,7 @@ from model.model_ import GMAN
 from model.train import train
 from model.test import test
 
-from src.utils import saveJson
+from src.utils import build_folder, saveJson
 
 def get_args():
     parser = argparse.ArgumentParser()
@@ -82,10 +82,10 @@ if __name__ == '__main__':
     args = get_args()
     output_folder = os.path.dirname(args.log_file)
     args.device = 'cuda' if torch.cuda.is_available() and args.device in ['gpu', 'cuda'] else 'cpu'
+    build_folder(args.output_folder)
     
     T = 24 * 60 // args.time_slot  # Number of time steps in one day
     saveJson(args.__dict__, os.path.join(output_folder, 'configures.json'))
-
 
     log = open(args.log_file, 'w')
     log_string(log, str(args)[10: -1])

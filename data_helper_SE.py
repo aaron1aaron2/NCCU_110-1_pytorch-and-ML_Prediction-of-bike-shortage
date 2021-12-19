@@ -3,7 +3,7 @@
 Author: yen-nan ho
 Contact: aaron1aaron2@gmail.com
 GitHub: https://github.com/aaron1aaron2
-Create Date:  20211213
+Create Date:  2021.12.13
 """
 import os
 import argparse
@@ -12,7 +12,7 @@ import pandas as pd
 import numpy as np
 from geopy.distance import geodesic
 
-from src.utils import build_folder
+from src.utils import build_folder, saveJson
 from model.node2vec import generateSE 
 
 pd.options.mode.chained_assignment = None  # default='warn'
@@ -190,8 +190,7 @@ if __name__ == "__main__":
     print("="*20 + '\n' + str(args))
     build_folder(args.output_folder)
 
-    with open(os.path.join(args.output_folder, 'config.txt'), 'w') as f:
-        f.write(str(args))
+    saveJson(args.__dict__, os.path.join(args.output_folder, 'configures.json'))
 
     Adj_file = os.path.join(args.output_folder, 'Adj.txt')
     SE_file = os.path.join(args.output_folder, 'SE.txt')

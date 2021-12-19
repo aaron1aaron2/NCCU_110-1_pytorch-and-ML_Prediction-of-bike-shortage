@@ -3,18 +3,17 @@
 Author: yen-nan ho
 Contact: aaron1aaron2@gmail.com
 GitHub: https://github.com/aaron1aaron2
-Create Date:  20211213
+Create Date:  2021.12.10
 """
 import os
+import folium
 import functools
+
 import pandas as pd
 import numpy as np
-import folium
-
-from sub_project import path_planing
-
 import seaborn as sns
-# sns.set_theme(style="darkgrid")
+sns.set_theme(style="darkgrid")
+
 import matplotlib
 import matplotlib.pyplot as plt
 from matplotlib import colors
@@ -87,8 +86,17 @@ plt.savefig(os.path.join(plot_output_folder, '2_stations-relationship_violin.png
 # plt.show()
 
 # 畫地圖
-map_data = path_planing.buildmap.data(output_folder + '/2_distance_table_2km_corr_pvalue(filter).csv', start_coor='start_coordinate', end_coor='end_coordinate')
-map_data = map_data.merge(spot_info[['sno','sarea']].rename(columns={'sno':'start_id'}).astype(str), how='left')
+df = pd.read_csv(output_folder + '/2_distance_table_2km_corr_pvalue(filter).csv', dtype=str)
+
+df.start_center = df.start_center.str.split(',')
+df.end_center = df.end_center.str.split(',')
+
+df = df.dropna()
+
+df['start_coordinate'] = df.start_center.apply(lambda x: [float(x[0]),float(x[1])])
+df['end_coordinate'] = df.end_center.apply(lambda x: [float(x[0]),float(x[1])])
+
+map_data = df.merge(spot_info[['sno','sarea']].rename(columns={'sno':'start_id'}).astype(str), how='left')
 
 
 cmap = cm.get_cmap('Set3', len(map_data['sarea'].unique()))    # PiYG
@@ -119,7 +127,7 @@ m = folium.Map(
         )  #中心區域的確定
 
 for i in range(0,len(map_data)):
-    location =[map_data['start_center'][i], map_data['end_center'][i]]
+    location =[map_data['start_coordinate'][i], map_data['end_coordinate'][i]]
 
     label = '<br>spearman: {}'.format(map_data['spearman'][i]) +\
             '<br>p-value: {:.2f} 公里'.format(float(map_data['p-value'][i])) 

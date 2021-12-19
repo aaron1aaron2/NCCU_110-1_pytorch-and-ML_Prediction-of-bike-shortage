@@ -1,16 +1,22 @@
-
+# encoding: utf-8
+"""
+Author: yen-nan ho
+Contact: aaron1aaron2@gmail.com
+GitHub: https://github.com/aaron1aaron2
+Create Date:  2021.12.19
+"""
 import os
 import argparse
 import pandas as pd
 
-from src.utils import build_folder
+from src.utils import build_folder, saveJson
 
 def get_args():
     parser = argparse.ArgumentParser()
 
     # data
     parser.add_argument('--file_path', type=str, default='data/youbike_sort/spot_info.csv')
-    parser.add_argument('--output_folder', type=str, default='output/train_data/SE')
+    parser.add_argument('--output_folder', type=str, default='output/train_data/')
     parser.add_argument('--group_col', type=str, default='sarea', help='群組欄位(youbike 資料以區為單位分區域)')
     parser.add_argument('--group', type=str, default=None, help='使用的群組(需要指定 group_col)，格式: 士林區,文山區')
     parser.add_argument('--use_group', type=bool, default=False, help='是否要每個 group 分別去建立點之間的連結')
@@ -28,8 +34,7 @@ def main():
     print("="*20 + '\n' + str(args))
     build_folder(args.output_folder)
 
-    with open(os.path.join(args.output_folder, 'config.txt'), 'w') as f:
-        f.write(str(args))
+    saveJson(args.__dict__, os.path.join(args.output_folder, 'configures.json'))
     
     output_path = os.path.join(args.output_folder, 'data.h5')
 

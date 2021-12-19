@@ -1,3 +1,8 @@
+# encoding: utf-8
+"""
+Author: VincLee8188
+GitHub: https://github.com/VincLee8188/GMAN-PyTorch
+"""
 import torch
 import pandas as pd
 import matplotlib.pyplot as plt
