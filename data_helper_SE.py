@@ -12,7 +12,7 @@ import pandas as pd
 import numpy as np
 from geopy.distance import geodesic
 
-from src.utils import build_folder, saveJson
+from src.utils import build_folder, saveJson, str2bool
 from model.node2vec import generateSE 
 
 pd.options.mode.chained_assignment = None  # default='warn'
@@ -156,7 +156,7 @@ def get_args():
     parser.add_argument('--id_col', type=str, default='sno', help='點的編號欄位')
     parser.add_argument('--group_col', type=str, default='sarea', help='群組欄位(youbike 資料以區為單位分區域)')
     parser.add_argument('--group', type=str, default=None, help='使用的群組(需要指定 group_col)，格式: XX區,XX區')
-    parser.add_argument('--use_group', type=bool, default=False, help='是否要每個 group 分別去建立點之間的連結')
+    parser.add_argument('--use_group', type=str2bool, default=False, help='是否要每個 group 分別去建立點之間的連結')
 
     parser.add_argument('--coordinate_col', type=str, default=None, help='點的經緯度欄位(當需要計算距離時)，格式: 24.1580,121.6222')
     parser.add_argument('--longitude_col', type=str, default='lng', help='經度(當 --coordinate_col 未設定時會使用)')

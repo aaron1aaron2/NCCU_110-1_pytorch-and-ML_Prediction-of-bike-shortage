@@ -9,12 +9,46 @@
 <p align="center"><img width="70%" src="img/Main_flow_chart.png" /></p>
 
 ## Quick Start
-### get youbike data
-#### 1. use example date
+### Get youbike data
+```
+python sub_project/youbike_crawler/crawler.py --work_freq_in_min 10 --output_folder data/youbike
+python sub_project/youbike_crawler/data_helper.py --crawler_output_folder data/youbike --output_folder data/youbike_sort
+```
+### prepare train data
+```
+data_helper.py --file_path data/youbike_sort/data.csv --output_folder 'data/train_data/' 
+```
+### prepare SE data
+`on window`
+```batch
+python data_helper_SE.py ^
+    --file_path data/youbike_sort/spot_info.csv ^
+    --output_folder data/train_data/SE/basic ^
+    --id_col sno ^
+    --group_col sarea ^
+    --group 文山區 ^
+    --use_group True ^
+    --longitude_col lng ^
+    --latitude_col lat ^
+    --adj_threshold 0.1
+```
+`on linux`
+```shell
+python data_helper_SE.py \
+    --file_path data/youbike_sort/spot_info.csv \
+    --output_folder data/train_data/SE \
+    --id_col sno \
+    --group_col sarea \
+    --group 文山區 \
+    --use_group True\
+    --longitude_col lng \
+    --latitude_col lat \
+    --adj_threshold 0.1
+```
 
-#### 2. use crawler
 
-
+## Model code source
+https://github.com/VincLee8188/GMAN-PyTorch
 ## Citation
 This version of implementation is only for learning purpose. For research, please refer to  and  cite from the following paper:
 ```
