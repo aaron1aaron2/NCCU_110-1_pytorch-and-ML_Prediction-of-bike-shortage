@@ -1,0 +1,2 @@
+python sub_project/youbike_crawler/crawler.py --work_freq_in_min 10 --output_folder data/youbike
+python sub_project/youbike_crawler/data_helper.py --crawler_output_folder data/youbike --output_folder data/youbike_sort
