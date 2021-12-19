@@ -67,10 +67,12 @@ def get_args():
                         help='traffic file')
     parser.add_argument('--SE_file', default='./model/data/SE(PeMS).txt',
                         help='spatial embedding file')
-    parser.add_argument('--model_file', default='./data/GMAN.pkl',
+    parser.add_argument('--model_file', default='./output/GMAN.pkl',
                         help='save the model to disk')
-    parser.add_argument('--log_file', default='./data/log',
+    parser.add_argument('--log_file', default='./output/log',
                         help='log file')
+    parser.add_argument('--output_folder', type=str, default='./output')
+    parser.add_argument('--view_batch_freq', type=int, default=100)
     parser.add_argument('--device', default='gpu', 
                         help='cpu or cuda')
 
@@ -124,10 +126,13 @@ if __name__ == '__main__':
     # train model >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
     start = time.time()
     loss_train, loss_val = train(model, args, log, loss_criterion, optimizer, scheduler)
+    # <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+
+    # test model >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
     plot_train_val_loss(loss_train, loss_val, 'figure/train_val_loss.png')
     trainPred, valPred, testPred, eval_dt = test(args, log)
-    
-    saveJson(eval_dt, os.path.join(output_folder, 'evaluation_prediction.json'))
+    saveJson(eval_dt, os.path.join(output_folder, 'evaluation.json'))
+    # <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 
     end = time.time()
     log_string(log, 'total time: %.1fmin' % ((end - start) / 60))
@@ -139,14 +144,15 @@ if __name__ == '__main__':
     valY_ = valY.numpy().reshape(-1, valY.shape[-1])
     testPred_ = testPred.numpy().reshape(-1, testY.shape[-1])
     testY_ = testY.numpy().reshape(-1, testY.shape[-1])
-    # <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 
     # Save training, validation and testing datas to disk
     l = [trainPred_, trainY_, valPred_, valY_, testPred_, testY_]
     name = ['trainPred', 'trainY', 'valPred', 'valY', 'testPred', 'testY']
     for i, data in enumerate(l):
         np.savetxt('./figure/' + name[i] + '.txt', data, fmt='%s')
-        
+
+    saveJson({trainPred_, trainY_, valPred_, valY_, testPred_, testY_}, os.path.join(output_folder, 'prediction.json'))
+
     # Plot the test prediction vs target（optional)
     plt.figure(figsize=(10, 280))
     for k in range(325):
