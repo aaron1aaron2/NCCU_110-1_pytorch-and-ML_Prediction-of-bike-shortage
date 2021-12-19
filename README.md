@@ -1,14 +1,12 @@
-# Dynamic planning of replenishment routes at fixed stations (Youbike in Taipei City)
+# Prediction of bike shortage and plan routes (Youbike in Taipei City)
 
 ## Quick Links
 - [About](#about)
 - [Quick Start](#quick-start-demo)
-- [Components](#drqa-components)
 
 ## About
 
-<p align="center"><img width="70%" src="img/drqa.png" /></p>
-
+<p align="center"><img width="70%" src="img/Main_flow_chart.png" /></p>
 
 ## Quick Start
 ### get youbike data
