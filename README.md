@@ -2,7 +2,7 @@
 
 ## Quick Links
 - [About](#about)
-- [Quick Start](#quick-start-demo)
+- [Quick Start](#quick-start)
 
 ## About
 
