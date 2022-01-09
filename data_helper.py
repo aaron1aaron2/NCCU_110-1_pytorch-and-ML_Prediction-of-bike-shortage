@@ -15,6 +15,7 @@ def get_args():
     parser = argparse.ArgumentParser()
 
     parser.add_argument('--file_path', type=str, default='data/youbike_sort/data.csv')
+    parser.add_argument('--id_file_path', type=str, default='data/youbike_sort/spot_info.csv')
     parser.add_argument('--output_folder', type=str, default='data/train_data/')
     parser.add_argument('--id_col', type=str, default='sno') 
     parser.add_argument('--value_col', type=str, default='sbi')
@@ -47,6 +48,7 @@ def main():
         exit()
     else:
         print("building data.h5 at ({})".format(output_path))
+        df_info = pd.read_csv(args.id_file_path)
 
         col_reads = [args.id_col, args.value_col, args.date_col, args.time_col]
         if args.group != None:
@@ -54,15 +56,30 @@ def main():
             df = pd.read_csv(args.file_path, usecols=col_reads, dtype=str)
             group_use_ls = args.group.split(',')
             df = df[df[args.group_col].isin(group_use_ls)]
+            df_info = df_info[df_info[args.group_col].isin(group_use_ls)]
         else:
             df = pd.read_csv(args.file_path, usecols=col_reads, dtype=str)
+
+    
+    df['sno'] = df['sno'].astype(int)
+
+    # 要給予從0開始的新 id
+    id_table = df.loc[:, [args.id_col]].drop_duplicates()
+    id_table.reset_index(drop=True, inplace=True)
+    id_table['new_id'] = id_table.index
+
+    df_info = df_info.merge(id_table, how='left')
+
+    df_info.to_csv(os.path.join(args.output_folder,'spot_info_id_table.csv'), index=False)
+
+    df = df.merge(id_table, how='left')
 
     # 轉換成 datetime 格式
     df['datetime'] = df[args.date_col] + '.' + df[args.time_col]
     df['datetime'] = pd.to_datetime(df['datetime'], format=r'%Y.%m.%d.%H%M%S')  
 
     # 將表扭曲成 row(datetime), columns(id), value
-    df_pvt = df.pivot(index='datetime', columns=args.id_col, values=args.value_col)
+    df_pvt = df.pivot(index='datetime', columns='new_id', values=args.value_col)
     df_pvt.to_hdf(os.path.join(args.output_folder, 'data.h5'), key='data', mode='w')
     if args.with_csv:
         df_pvt.to_csv(os.path.join(args.output_folder, 'data.csv'))
