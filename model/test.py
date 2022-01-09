@@ -32,9 +32,13 @@ def test(args, log):
             end_idx = min(num_train, (batch_idx + 1) * args.batch_size)
             X = trainX[start_idx: end_idx]
             TE = trainTE[start_idx: end_idx]
+            if torch.cuda.is_available():
+                X, TE = X.to(args.device), TE.to(args.device)
+
             pred_batch = model(X, TE)
-            trainPred.append(pred_batch.detach().clone())
+            trainPred.append(pred_batch.detach().cpu().clone())
             del X, TE, pred_batch
+        # trainPred = trainPred.cpu()
         trainPred = torch.from_numpy(np.concatenate(trainPred, axis=0))
         trainPred = trainPred * std + mean
 
@@ -44,9 +48,13 @@ def test(args, log):
             end_idx = min(num_val, (batch_idx + 1) * args.batch_size)
             X = valX[start_idx: end_idx]
             TE = valTE[start_idx: end_idx]
+            if torch.cuda.is_available():
+                X, TE = X.to(args.device), TE.to(args.device)
+
             pred_batch = model(X, TE)
-            valPred.append(pred_batch.detach().clone())
+            valPred.append(pred_batch.detach().cpu().clone())
             del X, TE, pred_batch
+        # valPred = valPred.cpu()
         valPred = torch.from_numpy(np.concatenate(valPred, axis=0))
         valPred = valPred * std + mean
 
@@ -57,8 +65,11 @@ def test(args, log):
             end_idx = min(num_test, (batch_idx + 1) * args.batch_size)
             X = testX[start_idx: end_idx]
             TE = testTE[start_idx: end_idx]
+            if torch.cuda.is_available():
+                X, TE = X.to(args.device), TE.to(args.device)
+
             pred_batch = model(X, TE)
-            testPred.append(pred_batch.detach().clone())
+            testPred.append(pred_batch.detach().cpu().clone())
             del X, TE, pred_batch
         testPred = torch.from_numpy(np.concatenate(testPred, axis=0))
         testPred = testPred* std + mean
@@ -82,6 +93,8 @@ def test(args, log):
         'val_mae': val_mae, 'val_rmse': val_rmse, 'val_mape': val_mape,
         'test_mae': test_mae, 'test_rmse': test_rmse, 'test_mape': test_mape
     }
+
+    eval_dt = {k:v.tolist() for k,v in eval_dt.items()}
 
     MAE, RMSE, MAPE = [], [], []
     for step in range(args.num_pred):

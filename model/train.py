@@ -79,7 +79,7 @@ def train(model, args, log, loss_criterion, optimizer, scheduler):
                 val_loss += loss_batch * (end_idx - start_idx)
                 del X, TE, label, pred, loss_batch
         val_loss /= num_val
-        val_total_loss.append(val_loss)
+        val_total_loss.append(val_loss.cpu().numpy().tolist())
         end_val = time.time()
         log_string(
             log,

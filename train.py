@@ -15,10 +15,8 @@ import time
 import argparse
 import torch
 
-import numpy as np
 import torch.optim as optim
 import torch.nn as nn
-import matplotlib.pyplot as plt
 
 from model.utils_ import log_string, plot_train_val_loss
 from model.utils_ import count_parameters, load_data
@@ -71,10 +69,14 @@ def get_args():
                         help='save the model to disk')
     parser.add_argument('--log_file', default='./output/log.txt',
                         help='log file')
+
     parser.add_argument('--output_folder', type=str, default='./output')
     parser.add_argument('--view_batch_freq', type=int, default=100)
     parser.add_argument('--device', default='gpu', 
                         help='cpu or cuda')
+
+    # parser.add_argument('--unuse_id', default='',
+    #                     help='unuse id')
 
     args = parser.parse_args()
 
@@ -152,21 +154,11 @@ if __name__ == '__main__':
     # Save training, validation and testing datas to disk
     l = [trainPred_, trainY_, valPred_, valY_, testPred_, testY_]
     name = ['trainPred', 'trainY', 'valPred', 'valY', 'testPred', 'testY']
-    for i, data in enumerate(l):
-        np.savetxt(os.path.join(fig_folder, name[i] + '.txt'), data, fmt='%s')
+    # for i, data in enumerate(l):
+    #     np.savetxt(os.path.join(fig_folder, name[i] + '.txt'), data, fmt='%s')
 
-    saveJson({trainPred_, trainY_, valPred_, valY_, testPred_, testY_}, os.path.join(output_folder, 'prediction.json'))
+    pred_dt = {k:v.tolist()  for k,v in list(zip(name, l))}
+    saveJson(pred_dt, os.path.join(output_folder, 'prediction.json'))
 
-    # Plot the test prediction vs target（optional)
-    plt.figure(figsize=(10, 280))
-    for k in range(325):
-        plt.subplot(325, 1, k + 1)
-        for j in range(len(testPred)):
-            c, d = [], []
-            for i in range(12):
-                c.append(testPred[j, i, k])
-                d.append(testY[j, i, k])
-            plt.plot(range(1 + j, 12 + 1 + j), c, c='b')
-            plt.plot(range(1 + j, 12 + 1 + j), d, c='r')
-    plt.title('Test prediction vs Target')
-    plt.savefig(os.path.join(fig_folder, 'test_results.png'))
+    sample_result_text = 'valmae({:.4f})_testmae({:.4f})_time({:.1f})'.format(eval_dt['val_mae'], eval_dt['test_mae'], end - start)
+    open(os.path.join(output_folder, sample_result_text), 'w').write('')

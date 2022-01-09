@@ -27,6 +27,8 @@ def get_args():
 
     parser.add_argument('--with_csv', dest='with_csv', action='store_true', help='順便輸出csv')
     parser.add_argument('--no-csv', dest='with_csv', action='store_false', help='不輸出csv')
+    parser.add_argument('--useid_th', default=1,
+                        help='unuse id')
 
     parser.set_defaults(with_csv=True)
 
@@ -53,15 +55,26 @@ def main():
         col_reads = [args.id_col, args.value_col, args.date_col, args.time_col]
         if args.group != None:
             col_reads.append(args.group_col)
-            df = pd.read_csv(args.file_path, usecols=col_reads, dtype=str)
+            df = pd.read_csv(args.file_path, dtype=str)
             group_use_ls = args.group.split(',')
             df = df[df[args.group_col].isin(group_use_ls)]
             df_info = df_info[df_info[args.group_col].isin(group_use_ls)]
         else:
-            df = pd.read_csv(args.file_path, usecols=col_reads, dtype=str)
+            df = pd.read_csv(args.file_path, dtype=str)
 
     
-    df['sno'] = df['sno'].astype(int)
+    df[args.id_col] = df[args.id_col].astype(int)
+
+    # 移除 act 小於 usid_th 的站點，因為未使用
+    total_timestep = df[df[args.id_col] == df[args.id_col].unique()[0]].shape[0]
+    act_stat = df.groupby([args.id_col])['act'].apply(lambda x: x.astype(int).sum())
+    act_stat_df = pd.DataFrame({args.id_col:act_stat.index, 'act_ct':act_stat}).reset_index(drop=True)
+    act_stat_df['act_ct'] = act_stat_df['act_ct']/total_timestep
+
+    use_id = act_stat_df.loc[act_stat_df['act_ct'] >= args.useid_th, args.id_col]
+
+    df = df[df[args.id_col].isin(use_id)]
+    df_info = df_info[df_info[args.id_col].isin(use_id)]
 
     # 要給予從0開始的新 id
     id_table = df.loc[:, [args.id_col]].drop_duplicates()

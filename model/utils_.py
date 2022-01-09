@@ -5,6 +5,7 @@ GitHub: https://github.com/VincLee8188/GMAN-PyTorch
 """
 import torch
 import pandas as pd
+import numpy as np
 import matplotlib.pyplot as plt
 from torch.utils.data import Dataset
 
@@ -14,7 +15,6 @@ def log_string(log, string):
     log.flush()
     print(string)
 
-
 # metric
 def metric(pred, label):
     mask = torch.ne(label, 0)
@@ -22,12 +22,16 @@ def metric(pred, label):
     mask /= torch.mean(mask)
     mae = torch.abs(torch.sub(pred, label)).type(torch.float32)
     rmse = mae ** 2
-    mape = mae / label
     mae = torch.mean(mae)
     rmse = rmse * mask
     rmse = torch.sqrt(torch.mean(rmse))
-    mape = mape * mask
-    mape = torch.mean(mape)
+
+    # 原始 #
+    # mape = mae / label
+    # mape = mape * mask
+    # mape = torch.mean(mape)
+    mask = label!=0
+    mape = np.fabs((label[mask]-pred[mask])/label[mask]).mean()
     return mae, rmse, mape
 
 
@@ -45,7 +49,11 @@ def seq2instance(data, num_his, num_pred):
 def load_data(args):
     # Traffic
     df = pd.read_hdf(args.traffic_file)
-    traffic = torch.from_numpy(df.values)
+    # if args.unuse_id!='':
+    #     unuse_id_ls = [int(i)for i in args.unuse_id.split(',')]
+    #     df = df[[i for i in df.columns if i not in unuse_id_ls]]
+    data = np.array(df.values, dtype='int64') # 要資料格式不能市 object
+    traffic = torch.from_numpy(data)
     # train/val/test
     num_step = df.shape[0]
     train_steps = round(args.train_ratio * num_step)
