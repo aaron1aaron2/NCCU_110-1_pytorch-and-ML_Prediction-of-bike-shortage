@@ -69,7 +69,7 @@ def get_args():
                         help='spatial embedding file')
     parser.add_argument('--model_file', default='./output/GMAN.pkl',
                         help='save the model to disk')
-    parser.add_argument('--log_file', default='./output/log',
+    parser.add_argument('--log_file', default='./output/log.txt',
                         help='log file')
     parser.add_argument('--output_folder', type=str, default='./output')
     parser.add_argument('--view_batch_freq', type=int, default=100)
@@ -84,7 +84,9 @@ if __name__ == '__main__':
     args = get_args()
     output_folder = os.path.dirname(args.log_file)
     args.device = 'cuda' if torch.cuda.is_available() and args.device in ['gpu', 'cuda'] else 'cpu'
+    fig_folder = os.path.join(args.output_folder, 'figure')
     build_folder(args.output_folder)
+    build_folder(fig_folder)
     
     T = 24 * 60 // args.time_slot  # Number of time steps in one day
     saveJson(args.__dict__, os.path.join(output_folder, 'configures.json'))
@@ -126,10 +128,12 @@ if __name__ == '__main__':
     # train model >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
     start = time.time()
     loss_train, loss_val = train(model, args, log, loss_criterion, optimizer, scheduler)
+    saveJson({'train_loss': list(loss_train), 'val_loss': list(loss_val)}, os.path.join(output_folder, 'epoch_loss.json'))
     # <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 
     # test model >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-    plot_train_val_loss(loss_train, loss_val, 'figure/train_val_loss.png')
+    plot_train_val_loss(loss_train, loss_val, 
+                os.path.join(fig_folder, 'train_val_loss.png'))
     trainPred, valPred, testPred, eval_dt = test(args, log)
     saveJson(eval_dt, os.path.join(output_folder, 'evaluation.json'))
     # <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
@@ -149,7 +153,7 @@ if __name__ == '__main__':
     l = [trainPred_, trainY_, valPred_, valY_, testPred_, testY_]
     name = ['trainPred', 'trainY', 'valPred', 'valY', 'testPred', 'testY']
     for i, data in enumerate(l):
-        np.savetxt('./figure/' + name[i] + '.txt', data, fmt='%s')
+        np.savetxt(os.path.join(fig_folder, name[i] + '.txt'), data, fmt='%s')
 
     saveJson({trainPred_, trainY_, valPred_, valY_, testPred_, testY_}, os.path.join(output_folder, 'prediction.json'))
 
@@ -165,4 +169,4 @@ if __name__ == '__main__':
             plt.plot(range(1 + j, 12 + 1 + j), c, c='b')
             plt.plot(range(1 + j, 12 + 1 + j), d, c='r')
     plt.title('Test prediction vs Target')
-    plt.savefig('./figure/test_results.png')
+    plt.savefig(os.path.join(fig_folder, 'test_results.png'))
