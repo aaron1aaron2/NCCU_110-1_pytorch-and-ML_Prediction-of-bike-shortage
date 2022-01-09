@@ -1,7 +1,7 @@
 python data_helper_SE.py ^
-    --file_path data/youbike_sort/spot_info.csv ^
+    --file_path data/train_data/spot_info_id_table.csv ^
     --output_folder data/train_data/SE/basic ^
-    --id_col sno ^
+    --id_col new_id ^
     --group_col sarea ^
     --group 文山區 ^
     --use_group True ^
