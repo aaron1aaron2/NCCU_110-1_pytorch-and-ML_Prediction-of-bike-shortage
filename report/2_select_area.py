@@ -57,18 +57,20 @@ dt_table_half.to_csv(output_folder + '/2_distance_table_2km_corr_pvalue.csv', in
 # 篩選 (spearman > 0.2 & p-value <0.05)
 dt_table_half = dt_table_half[dt_table_half['spearman'] != 0]
 dt_table_half['spearman_abs'] = dt_table_half['spearman'].abs()
+# dt_table_half = dt_table_half[(dt_table_half['spearman_abs']>0.2) & (dt_table_half['p-value']<0.05)]
 dt_table_half = dt_table_half[(dt_table_half['spearman_abs']>0.2) & (dt_table_half['p-value']<0.05)]
+
 dt_table_half.to_csv(output_folder + '/2_distance_table_2km_corr_pvalue(filter).csv', index=None)
 # dt_table_half = pd.read_csv(output_folder + '/2_distance_table_2km_corr_pvalue(filter).csv')
 
 # 視覺化
-# plt.clf()
-# sns.relplot(x="linear_distance", y="spearman_abs", data=dt_table_half)
-# plt.tight_layout()
-# plt.xlabel('Direct distance(km)')
-# plt.ylabel('Absolute value of spearman')
-# plt.savefig(os.path.join(plot_output_folder, '2_stations-relationship.png'))
-# # plt.show()
+plt.clf()
+sns.relplot(x="linear_distance", y="spearman", data=dt_table_half)
+plt.tight_layout()
+plt.xlabel('Direct distance(km)')
+plt.ylabel('Absolute value of spearman')
+plt.savefig(os.path.join(plot_output_folder, '2_stations-relationship.png'))
+plt.show()
 
 dt_table_half['linear_distance_level'] = dt_table_half['linear_distance'].apply(lambda x: round(x*10)*100)
 dt_table_half['linear_distance_level'] = dt_table_half['linear_distance_level'].apply(lambda x: '500' if x<=500 else (
