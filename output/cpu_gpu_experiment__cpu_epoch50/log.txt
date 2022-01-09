@@ -1,0 +1,134 @@
+K=8, L=1, SE_file='data/train_data/SE/basic/SE.txt', batch_size=6, d=8, decay_epoch=10, device='cpu', learning_rate=0.001, log_file='./output/cpu_gpu_experiment__cpu_epoch50/log.txt', max_epoch=50, model_file='./output/cpu_gpu_experiment__cpu_epoch50/model.pkl', num_his=5, num_pred=1, output_folder='./output/cpu_gpu_experiment__cpu_epoch50', patience=100, test_ratio=0.2, time_slot=10, traffic_file='data/train_data/data.h5', train_ratio=0.7, val_ratio=0.1, view_batch_freq=100
+main output folder./output/cpu_gpu_experiment__cpu_epoch50
+loading data...
+trainX: torch.Size([3622, 5, 26])		 trainY: torch.Size([3622, 1, 26])
+valX:   torch.Size([513, 5, 26])		valY:   torch.Size([513, 1, 26])
+testX:   torch.Size([1031, 5, 26])		testY:   torch.Size([1031, 1, 26])
+mean:   11.0472		std:   6.8502
+data loaded!
+compiling model...
+trainable parameters: 209,923
+**** training model ****
+2022-01-09 20:19:49 | epoch: 0001/50, training time: 49.2s, inference time: 1.9s
+train loss: 4.7467, val_loss: 4.0424
+val loss decrease from inf to 4.0424, saving model to ./output/cpu_gpu_experiment__cpu_epoch50/model.pkl
+2022-01-09 20:20:37 | epoch: 0002/50, training time: 46.0s, inference time: 1.9s
+train loss: 3.6466, val_loss: 3.7399
+val loss decrease from 4.0424 to 3.7399, saving model to ./output/cpu_gpu_experiment__cpu_epoch50/model.pkl
+2022-01-09 20:21:25 | epoch: 0003/50, training time: 45.6s, inference time: 1.9s
+train loss: 3.4702, val_loss: 3.5582
+val loss decrease from 3.7399 to 3.5582, saving model to ./output/cpu_gpu_experiment__cpu_epoch50/model.pkl
+2022-01-09 20:22:12 | epoch: 0004/50, training time: 46.0s, inference time: 1.9s
+train loss: 3.4114, val_loss: 3.7107
+2022-01-09 20:23:00 | epoch: 0005/50, training time: 45.7s, inference time: 1.9s
+train loss: 3.3886, val_loss: 3.4978
+val loss decrease from 3.5582 to 3.4978, saving model to ./output/cpu_gpu_experiment__cpu_epoch50/model.pkl
+2022-01-09 20:23:48 | epoch: 0006/50, training time: 45.9s, inference time: 1.9s
+train loss: 3.3702, val_loss: 3.7039
+2022-01-09 20:24:39 | epoch: 0007/50, training time: 49.4s, inference time: 2.0s
+train loss: 3.3052, val_loss: 3.4654
+val loss decrease from 3.4978 to 3.4654, saving model to ./output/cpu_gpu_experiment__cpu_epoch50/model.pkl
+2022-01-09 20:25:30 | epoch: 0008/50, training time: 48.5s, inference time: 1.8s
+train loss: 3.2862, val_loss: 3.5562
+2022-01-09 20:26:19 | epoch: 0009/50, training time: 47.2s, inference time: 1.9s
+train loss: 3.2516, val_loss: 3.4260
+val loss decrease from 3.4654 to 3.4260, saving model to ./output/cpu_gpu_experiment__cpu_epoch50/model.pkl
+2022-01-09 20:27:09 | epoch: 0010/50, training time: 47.7s, inference time: 2.1s
+train loss: 3.2260, val_loss: 3.4359
+2022-01-09 20:27:59 | epoch: 0011/50, training time: 48.4s, inference time: 1.9s
+train loss: 3.2217, val_loss: 3.4412
+2022-01-09 20:28:48 | epoch: 0012/50, training time: 47.7s, inference time: 1.9s
+train loss: 3.1728, val_loss: 3.4080
+val loss decrease from 3.4260 to 3.4080, saving model to ./output/cpu_gpu_experiment__cpu_epoch50/model.pkl
+2022-01-09 20:29:39 | epoch: 0013/50, training time: 48.6s, inference time: 1.8s
+train loss: 3.1628, val_loss: 3.4871
+2022-01-09 20:30:32 | epoch: 0014/50, training time: 50.9s, inference time: 2.0s
+train loss: 3.1527, val_loss: 3.3984
+val loss decrease from 3.4080 to 3.3984, saving model to ./output/cpu_gpu_experiment__cpu_epoch50/model.pkl
+2022-01-09 20:31:23 | epoch: 0015/50, training time: 48.9s, inference time: 2.0s
+train loss: 3.0924, val_loss: 3.5480
+2022-01-09 20:32:14 | epoch: 0016/50, training time: 49.1s, inference time: 2.0s
+train loss: 3.1350, val_loss: 3.4298
+2022-01-09 20:33:05 | epoch: 0017/50, training time: 49.0s, inference time: 2.0s
+train loss: 3.1035, val_loss: 3.4709
+2022-01-09 20:33:57 | epoch: 0018/50, training time: 50.3s, inference time: 2.1s
+train loss: 3.0780, val_loss: 3.3793
+val loss decrease from 3.3984 to 3.3793, saving model to ./output/cpu_gpu_experiment__cpu_epoch50/model.pkl
+2022-01-09 20:34:50 | epoch: 0019/50, training time: 50.5s, inference time: 2.0s
+train loss: 3.0837, val_loss: 3.4288
+2022-01-09 20:35:42 | epoch: 0020/50, training time: 50.5s, inference time: 2.0s
+train loss: 3.0960, val_loss: 3.4544
+2022-01-09 20:36:34 | epoch: 0021/50, training time: 49.9s, inference time: 2.0s
+train loss: 3.0752, val_loss: 3.5104
+2022-01-09 20:37:26 | epoch: 0022/50, training time: 50.3s, inference time: 2.0s
+train loss: 3.0870, val_loss: 3.5118
+2022-01-09 20:38:16 | epoch: 0023/50, training time: 48.3s, inference time: 2.0s
+train loss: 3.0240, val_loss: 3.4407
+2022-01-09 20:39:07 | epoch: 0024/50, training time: 48.3s, inference time: 1.9s
+train loss: 3.0125, val_loss: 3.4614
+2022-01-09 20:39:58 | epoch: 0025/50, training time: 48.8s, inference time: 2.2s
+train loss: 2.9804, val_loss: 3.5941
+2022-01-09 20:40:50 | epoch: 0026/50, training time: 50.5s, inference time: 2.0s
+train loss: 3.0000, val_loss: 3.5195
+2022-01-09 20:41:42 | epoch: 0027/50, training time: 50.0s, inference time: 2.0s
+train loss: 2.9392, val_loss: 3.4463
+2022-01-09 20:42:37 | epoch: 0028/50, training time: 53.0s, inference time: 2.1s
+train loss: 2.9467, val_loss: 3.3936
+2022-01-09 20:43:29 | epoch: 0029/50, training time: 49.6s, inference time: 2.0s
+train loss: 2.9663, val_loss: 3.5485
+2022-01-09 20:44:20 | epoch: 0030/50, training time: 49.1s, inference time: 2.2s
+train loss: 2.9425, val_loss: 3.4540
+2022-01-09 20:45:13 | epoch: 0031/50, training time: 50.7s, inference time: 2.0s
+train loss: 2.8980, val_loss: 3.5410
+2022-01-09 20:46:06 | epoch: 0032/50, training time: 51.0s, inference time: 2.2s
+train loss: 2.8623, val_loss: 3.5698
+2022-01-09 20:46:57 | epoch: 0033/50, training time: 48.9s, inference time: 1.9s
+train loss: 2.8736, val_loss: 3.6078
+2022-01-09 20:47:48 | epoch: 0034/50, training time: 48.9s, inference time: 1.9s
+train loss: 2.8573, val_loss: 3.6640
+2022-01-09 20:48:38 | epoch: 0035/50, training time: 47.8s, inference time: 2.0s
+train loss: 2.8483, val_loss: 3.6537
+2022-01-09 20:49:29 | epoch: 0036/50, training time: 49.4s, inference time: 2.0s
+train loss: 2.8586, val_loss: 3.5687
+2022-01-09 20:50:17 | epoch: 0037/50, training time: 46.5s, inference time: 1.9s
+train loss: 2.7972, val_loss: 3.6523
+2022-01-09 20:51:06 | epoch: 0038/50, training time: 47.3s, inference time: 1.9s
+train loss: 2.7763, val_loss: 3.5780
+2022-01-09 20:51:56 | epoch: 0039/50, training time: 47.4s, inference time: 1.9s
+train loss: 2.7777, val_loss: 3.4825
+2022-01-09 20:52:45 | epoch: 0040/50, training time: 47.3s, inference time: 2.0s
+train loss: 2.8120, val_loss: 3.6656
+2022-01-09 20:53:31 | epoch: 0041/50, training time: 44.5s, inference time: 1.8s
+train loss: 2.7544, val_loss: 3.4888
+2022-01-09 20:54:20 | epoch: 0042/50, training time: 46.5s, inference time: 2.0s
+train loss: 2.7417, val_loss: 3.5681
+2022-01-09 20:55:12 | epoch: 0043/50, training time: 49.7s, inference time: 2.0s
+train loss: 2.7204, val_loss: 3.4355
+2022-01-09 20:56:00 | epoch: 0044/50, training time: 46.6s, inference time: 2.0s
+train loss: 2.7063, val_loss: 3.5989
+2022-01-09 20:56:48 | epoch: 0045/50, training time: 46.4s, inference time: 2.0s
+train loss: 2.7240, val_loss: 3.5502
+2022-01-09 20:57:42 | epoch: 0046/50, training time: 51.5s, inference time: 2.0s
+train loss: 2.6860, val_loss: 3.6557
+2022-01-09 20:58:31 | epoch: 0047/50, training time: 46.6s, inference time: 2.3s
+train loss: 2.6814, val_loss: 3.6066
+2022-01-09 20:59:24 | epoch: 0048/50, training time: 51.4s, inference time: 2.0s
+train loss: 2.6851, val_loss: 3.5178
+2022-01-09 21:00:13 | epoch: 0049/50, training time: 47.3s, inference time: 1.9s
+train loss: 2.6276, val_loss: 3.7284
+2022-01-09 21:01:02 | epoch: 0050/50, training time: 46.4s, inference time: 2.0s
+train loss: 2.6475, val_loss: 3.5852
+Training and validation are completed, and model has been stored as ./output/cpu_gpu_experiment__cpu_epoch50/model.pkl
+**** testing model ****
+loading model from ./output/cpu_gpu_experiment__cpu_epoch50/model.pkl
+model restored!
+evaluating...
+testing time: 4.0s
+                MAE		RMSE		MAPE
+train            0.88		1.44		14.75%
+val              1.19		1.92		18.71%
+test             1.02		1.77		16.46%
+performance in each prediction step
+step: 01         1.02		1.77		16.46%
+average:         1.02		1.77		16.46%
+total time: 42.4min

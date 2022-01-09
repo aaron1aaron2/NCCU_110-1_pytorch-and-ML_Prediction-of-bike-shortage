@@ -1,0 +1,13 @@
+{
+  "file_path": "data/youbike_sort/data.csv",
+  "id_file_path": "data/youbike_sort/spot_info.csv",
+  "output_folder": "data/train_data/",
+  "id_col": "sno",
+  "value_col": "sbi",
+  "date_col": "date",
+  "time_col": "time",
+  "group_col": "sarea",
+  "group": "文山區",
+  "with_csv": true,
+  "useid_th": 1
+}
