@@ -1,0 +1,231 @@
+K=8, L=1, SE_file='data/train_data/SE/basic/SE.txt', batch_size=24, d=8, decay_epoch=10, device='cuda', learning_rate=0.1, log_file='./output/hyperparameters_experiment__gpu_lr0.1/log.txt', max_epoch=100, model_file='./output/hyperparameters_experiment__gpu_lr0.1/model.pkl', num_his=5, num_pred=1, output_folder='./output/hyperparameters_experiment__gpu_lr0.1', patience=100, test_ratio=0.2, time_slot=10, traffic_file='data/train_data/data.h5', train_ratio=0.7, val_ratio=0.1, view_batch_freq=100
+main output folder./output/hyperparameters_experiment__gpu_lr0.1
+loading data...
+trainX: torch.Size([3622, 5, 26])		 trainY: torch.Size([3622, 1, 26])
+valX:   torch.Size([513, 5, 26])		valY:   torch.Size([513, 1, 26])
+testX:   torch.Size([1031, 5, 26])		testY:   torch.Size([1031, 1, 26])
+mean:   11.0472		std:   6.8502
+data loaded!
+compiling model...
+trainable parameters: 209,923
+**** training model ****
+2022-01-10 23:44:19 | epoch: 0001/100, training time: 17.7s, inference time: 0.6s
+train loss: 5.4204, val_loss: 3.6756
+val loss decrease from inf to 3.6756, saving model to ./output/hyperparameters_experiment__gpu_lr0.1/model.pkl
+2022-01-10 23:44:32 | epoch: 0002/100, training time: 12.4s, inference time: 0.7s
+train loss: 3.1719, val_loss: 3.7178
+2022-01-10 23:44:46 | epoch: 0003/100, training time: 13.0s, inference time: 0.7s
+train loss: 3.2292, val_loss: 3.6903
+2022-01-10 23:45:00 | epoch: 0004/100, training time: 13.3s, inference time: 0.7s
+train loss: 3.1778, val_loss: 3.8150
+2022-01-10 23:45:14 | epoch: 0005/100, training time: 13.5s, inference time: 0.7s
+train loss: 3.1088, val_loss: 4.1099
+2022-01-10 23:45:28 | epoch: 0006/100, training time: 13.3s, inference time: 0.7s
+train loss: 3.1466, val_loss: 3.5691
+val loss decrease from 3.6756 to 3.5691, saving model to ./output/hyperparameters_experiment__gpu_lr0.1/model.pkl
+2022-01-10 23:45:42 | epoch: 0007/100, training time: 13.3s, inference time: 0.7s
+train loss: 3.0178, val_loss: 4.2510
+2022-01-10 23:45:57 | epoch: 0008/100, training time: 13.9s, inference time: 0.7s
+train loss: 3.0579, val_loss: 3.5382
+val loss decrease from 3.5691 to 3.5382, saving model to ./output/hyperparameters_experiment__gpu_lr0.1/model.pkl
+2022-01-10 23:46:11 | epoch: 0009/100, training time: 13.4s, inference time: 0.7s
+train loss: 2.9865, val_loss: 3.9312
+2022-01-10 23:46:25 | epoch: 0010/100, training time: 13.4s, inference time: 0.7s
+train loss: 2.9746, val_loss: 3.6263
+2022-01-10 23:46:39 | epoch: 0011/100, training time: 13.6s, inference time: 0.7s
+train loss: 2.9723, val_loss: 3.7148
+2022-01-10 23:46:54 | epoch: 0012/100, training time: 13.7s, inference time: 0.8s
+train loss: 2.9729, val_loss: 3.5257
+val loss decrease from 3.5382 to 3.5257, saving model to ./output/hyperparameters_experiment__gpu_lr0.1/model.pkl
+2022-01-10 23:47:08 | epoch: 0013/100, training time: 13.6s, inference time: 0.7s
+train loss: 2.8969, val_loss: 3.7653
+2022-01-10 23:47:23 | epoch: 0014/100, training time: 14.5s, inference time: 0.7s
+train loss: 2.8966, val_loss: 3.5551
+2022-01-10 23:47:37 | epoch: 0015/100, training time: 13.2s, inference time: 0.7s
+train loss: 3.1038, val_loss: 5.5324
+2022-01-10 23:47:51 | epoch: 0016/100, training time: 13.2s, inference time: 0.7s
+train loss: 2.9876, val_loss: 3.4011
+val loss decrease from 3.5257 to 3.4011, saving model to ./output/hyperparameters_experiment__gpu_lr0.1/model.pkl
+2022-01-10 23:48:06 | epoch: 0017/100, training time: 14.6s, inference time: 0.7s
+train loss: 2.8446, val_loss: 4.0969
+2022-01-10 23:48:20 | epoch: 0018/100, training time: 13.2s, inference time: 0.7s
+train loss: 2.9223, val_loss: 4.6095
+2022-01-10 23:48:35 | epoch: 0019/100, training time: 13.8s, inference time: 0.7s
+train loss: 2.9095, val_loss: 3.6674
+2022-01-10 23:48:49 | epoch: 0020/100, training time: 13.9s, inference time: 0.7s
+train loss: 2.9514, val_loss: 4.3401
+2022-01-10 23:49:03 | epoch: 0021/100, training time: 13.6s, inference time: 0.7s
+train loss: 2.8590, val_loss: 3.9832
+2022-01-10 23:49:18 | epoch: 0022/100, training time: 13.9s, inference time: 0.7s
+train loss: 2.7922, val_loss: 3.4120
+2022-01-10 23:49:33 | epoch: 0023/100, training time: 13.7s, inference time: 0.7s
+train loss: 2.8486, val_loss: 3.9364
+2022-01-10 23:49:48 | epoch: 0024/100, training time: 14.5s, inference time: 0.7s
+train loss: 2.8654, val_loss: 3.7705
+2022-01-10 23:50:01 | epoch: 0025/100, training time: 12.9s, inference time: 0.7s
+train loss: 2.8024, val_loss: 3.7120
+2022-01-10 23:50:16 | epoch: 0026/100, training time: 13.4s, inference time: 0.8s
+train loss: 2.7723, val_loss: 3.4947
+2022-01-10 23:50:33 | epoch: 0027/100, training time: 16.4s, inference time: 0.8s
+train loss: 2.7551, val_loss: 3.7437
+2022-01-10 23:50:51 | epoch: 0028/100, training time: 17.1s, inference time: 0.7s
+train loss: 2.7475, val_loss: 3.6887
+2022-01-10 23:51:07 | epoch: 0029/100, training time: 16.1s, inference time: 0.9s
+train loss: 2.7420, val_loss: 3.5435
+2022-01-10 23:51:26 | epoch: 0030/100, training time: 17.2s, inference time: 1.2s
+train loss: 2.7109, val_loss: 3.4499
+2022-01-10 23:51:49 | epoch: 0031/100, training time: 21.7s, inference time: 1.1s
+train loss: 2.7094, val_loss: 3.7763
+2022-01-10 23:52:15 | epoch: 0032/100, training time: 24.6s, inference time: 1.6s
+train loss: 2.6897, val_loss: 3.5635
+2022-01-10 23:52:48 | epoch: 0033/100, training time: 31.1s, inference time: 2.0s
+train loss: 2.7382, val_loss: 3.8009
+2022-01-10 23:53:22 | epoch: 0034/100, training time: 31.9s, inference time: 1.7s
+train loss: 2.7035, val_loss: 3.6276
+2022-01-10 23:53:54 | epoch: 0035/100, training time: 29.6s, inference time: 2.5s
+train loss: 2.7235, val_loss: 3.5509
+2022-01-10 23:54:29 | epoch: 0036/100, training time: 34.0s, inference time: 1.2s
+train loss: 2.6588, val_loss: 3.4846
+2022-01-10 23:54:55 | epoch: 0037/100, training time: 24.4s, inference time: 1.1s
+train loss: 2.7222, val_loss: 3.9487
+2022-01-10 23:55:11 | epoch: 0038/100, training time: 15.7s, inference time: 0.7s
+train loss: 2.6713, val_loss: 4.8971
+2022-01-10 23:55:26 | epoch: 0039/100, training time: 13.9s, inference time: 1.1s
+train loss: 2.6855, val_loss: 3.6236
+2022-01-10 23:55:48 | epoch: 0040/100, training time: 20.7s, inference time: 1.0s
+train loss: 2.6289, val_loss: 3.4455
+2022-01-10 23:56:10 | epoch: 0041/100, training time: 21.2s, inference time: 1.1s
+train loss: 2.5576, val_loss: 3.5076
+2022-01-10 23:56:34 | epoch: 0042/100, training time: 22.3s, inference time: 1.4s
+train loss: 2.5597, val_loss: 3.5692
+2022-01-10 23:56:57 | epoch: 0043/100, training time: 22.7s, inference time: 0.9s
+train loss: 2.4702, val_loss: 3.5695
+2022-01-10 23:57:13 | epoch: 0044/100, training time: 15.5s, inference time: 0.8s
+train loss: 2.5198, val_loss: 3.8118
+2022-01-10 23:57:29 | epoch: 0045/100, training time: 14.7s, inference time: 0.7s
+train loss: 2.5153, val_loss: 3.4934
+2022-01-10 23:57:44 | epoch: 0046/100, training time: 14.4s, inference time: 0.9s
+train loss: 2.5061, val_loss: 3.4352
+2022-01-10 23:58:00 | epoch: 0047/100, training time: 14.9s, inference time: 0.7s
+train loss: 2.4778, val_loss: 5.0631
+2022-01-10 23:58:15 | epoch: 0048/100, training time: 14.5s, inference time: 0.7s
+train loss: 2.4217, val_loss: 3.5009
+2022-01-10 23:58:29 | epoch: 0049/100, training time: 13.1s, inference time: 0.7s
+train loss: 2.4506, val_loss: 4.0795
+2022-01-10 23:58:43 | epoch: 0050/100, training time: 13.2s, inference time: 0.7s
+train loss: 2.4200, val_loss: 3.6178
+2022-01-10 23:58:57 | epoch: 0051/100, training time: 13.5s, inference time: 0.7s
+train loss: 2.4122, val_loss: 3.6307
+2022-01-10 23:59:10 | epoch: 0052/100, training time: 12.8s, inference time: 0.7s
+train loss: 2.3399, val_loss: 3.6815
+2022-01-10 23:59:24 | epoch: 0053/100, training time: 12.7s, inference time: 0.7s
+train loss: 2.3337, val_loss: 3.6076
+2022-01-10 23:59:37 | epoch: 0054/100, training time: 12.8s, inference time: 0.7s
+train loss: 2.2833, val_loss: 3.4004
+val loss decrease from 3.4011 to 3.4004, saving model to ./output/hyperparameters_experiment__gpu_lr0.1/model.pkl
+2022-01-10 23:59:51 | epoch: 0055/100, training time: 13.0s, inference time: 0.7s
+train loss: 2.2977, val_loss: 3.7178
+2022-01-11 00:00:04 | epoch: 0056/100, training time: 12.8s, inference time: 0.7s
+train loss: 2.2428, val_loss: 3.6268
+2022-01-11 00:00:18 | epoch: 0057/100, training time: 12.8s, inference time: 0.7s
+train loss: 2.2745, val_loss: 3.8348
+2022-01-11 00:00:31 | epoch: 0058/100, training time: 12.8s, inference time: 0.7s
+train loss: 2.2761, val_loss: 4.1983
+2022-01-11 00:00:45 | epoch: 0059/100, training time: 12.8s, inference time: 0.7s
+train loss: 2.2777, val_loss: 3.5957
+2022-01-11 00:00:59 | epoch: 0060/100, training time: 14.1s, inference time: 0.7s
+train loss: 2.2369, val_loss: 3.7195
+2022-01-11 00:01:13 | epoch: 0061/100, training time: 12.8s, inference time: 0.7s
+train loss: 2.1652, val_loss: 3.6716
+2022-01-11 00:01:26 | epoch: 0062/100, training time: 12.8s, inference time: 0.7s
+train loss: 2.1302, val_loss: 3.8720
+2022-01-11 00:01:40 | epoch: 0063/100, training time: 12.9s, inference time: 0.7s
+train loss: 2.1332, val_loss: 3.4900
+2022-01-11 00:01:55 | epoch: 0064/100, training time: 14.7s, inference time: 0.8s
+train loss: 2.1125, val_loss: 3.8001
+2022-01-11 00:02:12 | epoch: 0065/100, training time: 15.9s, inference time: 0.8s
+train loss: 2.1447, val_loss: 3.9172
+2022-01-11 00:02:28 | epoch: 0066/100, training time: 15.5s, inference time: 0.9s
+train loss: 2.1341, val_loss: 3.6798
+2022-01-11 00:02:44 | epoch: 0067/100, training time: 14.4s, inference time: 0.7s
+train loss: 2.0579, val_loss: 3.8884
+2022-01-11 00:02:58 | epoch: 0068/100, training time: 13.6s, inference time: 0.7s
+train loss: 2.0480, val_loss: 3.8722
+2022-01-11 00:03:11 | epoch: 0069/100, training time: 12.9s, inference time: 0.7s
+train loss: 2.0422, val_loss: 3.8045
+2022-01-11 00:03:25 | epoch: 0070/100, training time: 13.1s, inference time: 0.7s
+train loss: 2.0716, val_loss: 3.8637
+2022-01-11 00:03:39 | epoch: 0071/100, training time: 13.4s, inference time: 0.7s
+train loss: 1.9968, val_loss: 4.7538
+2022-01-11 00:03:55 | epoch: 0072/100, training time: 14.9s, inference time: 0.7s
+train loss: 1.9909, val_loss: 3.8018
+2022-01-11 00:04:09 | epoch: 0073/100, training time: 13.5s, inference time: 0.7s
+train loss: 1.9285, val_loss: 3.8186
+2022-01-11 00:04:26 | epoch: 0074/100, training time: 16.1s, inference time: 0.8s
+train loss: 1.9187, val_loss: 3.9877
+2022-01-11 00:04:44 | epoch: 0075/100, training time: 16.8s, inference time: 0.8s
+train loss: 1.8751, val_loss: 5.4921
+2022-01-11 00:05:01 | epoch: 0076/100, training time: 16.8s, inference time: 0.8s
+train loss: 1.8883, val_loss: 3.9991
+2022-01-11 00:05:20 | epoch: 0077/100, training time: 18.0s, inference time: 0.8s
+train loss: 1.8773, val_loss: 3.8449
+2022-01-11 00:05:36 | epoch: 0078/100, training time: 15.8s, inference time: 0.7s
+train loss: 1.9298, val_loss: 4.2325
+2022-01-11 00:05:54 | epoch: 0079/100, training time: 16.5s, inference time: 0.9s
+train loss: 1.8566, val_loss: 3.8207
+2022-01-11 00:06:09 | epoch: 0080/100, training time: 14.7s, inference time: 0.7s
+train loss: 1.8741, val_loss: 4.0426
+2022-01-11 00:06:24 | epoch: 0081/100, training time: 13.9s, inference time: 0.7s
+train loss: 1.8328, val_loss: 3.7934
+2022-01-11 00:06:38 | epoch: 0082/100, training time: 13.9s, inference time: 0.7s
+train loss: 1.7961, val_loss: 3.7116
+2022-01-11 00:06:53 | epoch: 0083/100, training time: 13.8s, inference time: 0.7s
+train loss: 1.7800, val_loss: 3.7832
+2022-01-11 00:07:08 | epoch: 0084/100, training time: 13.9s, inference time: 0.7s
+train loss: 1.7518, val_loss: 4.6458
+2022-01-11 00:07:23 | epoch: 0085/100, training time: 14.2s, inference time: 0.7s
+train loss: 1.7889, val_loss: 3.9448
+2022-01-11 00:07:38 | epoch: 0086/100, training time: 15.1s, inference time: 0.7s
+train loss: 1.7658, val_loss: 3.8223
+2022-01-11 00:07:53 | epoch: 0087/100, training time: 14.2s, inference time: 0.7s
+train loss: 1.7637, val_loss: 3.8962
+2022-01-11 00:08:08 | epoch: 0088/100, training time: 13.9s, inference time: 0.7s
+train loss: 1.7586, val_loss: 3.7070
+2022-01-11 00:08:22 | epoch: 0089/100, training time: 13.9s, inference time: 0.7s
+train loss: 1.7747, val_loss: 3.9406
+2022-01-11 00:08:37 | epoch: 0090/100, training time: 13.8s, inference time: 0.7s
+train loss: 1.6782, val_loss: 3.9980
+2022-01-11 00:08:52 | epoch: 0091/100, training time: 14.2s, inference time: 0.7s
+train loss: 1.7017, val_loss: 4.2942
+2022-01-11 00:09:07 | epoch: 0092/100, training time: 13.9s, inference time: 0.7s
+train loss: 1.6557, val_loss: 3.8685
+2022-01-11 00:09:22 | epoch: 0093/100, training time: 14.1s, inference time: 0.9s
+train loss: 1.6836, val_loss: 4.3078
+2022-01-11 00:09:39 | epoch: 0094/100, training time: 17.1s, inference time: 0.8s
+train loss: 1.6881, val_loss: 4.6731
+2022-01-11 00:09:55 | epoch: 0095/100, training time: 14.8s, inference time: 0.7s
+train loss: 1.6711, val_loss: 3.9106
+2022-01-11 00:10:12 | epoch: 0096/100, training time: 16.2s, inference time: 0.7s
+train loss: 1.6775, val_loss: 4.4878
+2022-01-11 00:10:27 | epoch: 0097/100, training time: 14.6s, inference time: 0.7s
+train loss: 1.6549, val_loss: 4.2635
+2022-01-11 00:10:43 | epoch: 0098/100, training time: 15.3s, inference time: 0.8s
+train loss: 1.6263, val_loss: 3.9843
+2022-01-11 00:11:00 | epoch: 0099/100, training time: 15.8s, inference time: 0.8s
+train loss: 1.6340, val_loss: 4.1261
+2022-01-11 00:11:16 | epoch: 0100/100, training time: 15.1s, inference time: 0.8s
+train loss: 1.6395, val_loss: 4.9634
+Training and validation are completed, and model has been stored as ./output/hyperparameters_experiment__gpu_lr0.1/model.pkl
+**** testing model ****
+loading model from ./output/hyperparameters_experiment__gpu_lr0.1/model.pkl
+model restored!
+evaluating...
+testing time: 1.6s
+                MAE		RMSE		MAPE
+train            0.99		1.40		14.03%
+val              1.49		2.25		21.76%
+test             1.26		2.03		19.05%
+performance in each prediction step
+step: 01         1.26		2.03		19.05%
+average:         1.26		2.03		19.05%
+total time: 27.4min
