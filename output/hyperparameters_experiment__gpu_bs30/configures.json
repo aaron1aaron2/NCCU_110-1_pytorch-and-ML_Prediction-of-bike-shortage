@@ -1,0 +1,23 @@
+{
+  "time_slot": 10,
+  "num_his": 5,
+  "num_pred": 1,
+  "L": 1,
+  "K": 8,
+  "d": 8,
+  "train_ratio": 0.7,
+  "val_ratio": 0.1,
+  "test_ratio": 0.2,
+  "batch_size": 30,
+  "max_epoch": 50,
+  "patience": 100,
+  "learning_rate": 0.001,
+  "decay_epoch": 10,
+  "traffic_file": "data/train_data/data.h5",
+  "SE_file": "data/train_data/SE/basic/SE.txt",
+  "model_file": "./output/hyperparameters_experiment__gpu_bs30/model.pkl",
+  "log_file": "./output/hyperparameters_experiment__gpu_bs30/log.txt",
+  "output_folder": "./output/hyperparameters_experiment__gpu_bs30",
+  "view_batch_freq": 100,
+  "device": "cuda"
+}
