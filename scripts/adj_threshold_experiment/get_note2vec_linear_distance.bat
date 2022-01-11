@@ -3,7 +3,7 @@
 
 @REM 設置變數用 set
 set testonevar=True
-set input_file="data/youbike_sort/spot_info.csv"
+set input_file="data/train_data/spot_info_id_table.csv"
 set vars=("adjs","walklenghts","numwalks","ps","qs")
 
 @REM set dims=(32,64,100) 需要改 k、d
@@ -21,9 +21,9 @@ if %testonevar%==True (
         echo %%v
         if %%v=="adjs" (
             for %%d in %adjs% do (
-                python data_helper_SE.py --file_path %input_file%^
-                --output_folder "data/train_data/SE/test_%%v/D%%d_WS10_WL80_NW100_P2_Q1"^
-                --adj_threshold %%d 
+                python data_helper_SE.py --file_path %input_file% ^
+                --output_folder "data/train_data/SE/test_%%v/D%%d_WS10_WL80_NW100_P2_Q1" ^
+                --adj_threshold %%d --id_col new_id --longitude_col lng --latitude_col lat 
             )
         )
 
@@ -47,7 +47,7 @@ if %testonevar%==True (
             for %%l in %walklengths% do (
                 python data_helper_SE.py --file_path %input_file%^
                 --output_folder "data/train_data/SE/test_%%v/D64_WS10_WL%%l_NW100_P2_Q1"^
-                --walk_length %%l 
+                --walk_length %%l --id_col new_id --longitude_col lng --latitude_col lat 
             )
         )
 
@@ -55,7 +55,7 @@ if %testonevar%==True (
             for %%n in %numwalks% do (
                 python data_helper_SE.py --file_path %input_file%^
                 --output_folder "data/train_data/SE/test_%%v/D64_WS10_WL80_NW%%n_P2_Q1"^
-                --num_walks %%n 
+                --num_walks %%n --id_col new_id --longitude_col lng --latitude_col lat 
             )     
         )
 
@@ -63,7 +63,7 @@ if %testonevar%==True (
             for %%p in %ps% do (
                 python data_helper_SE.py --file_path %input_file%^
                 --output_folder "data/train_data/SE/test_%%v/D64_WS10_WL80_NW100_P%%p_Q1"^
-                --p %%p 
+                --p %%p --id_col new_id --group_col sarea --longitude_col lng --latitude_col lat 
             )
         )
 
@@ -71,7 +71,7 @@ if %testonevar%==True (
             for %%q in %qs% do (
                 python data_helper_SE.py --file_path %input_file%^
                 --output_folder "data/train_data/SE/test_%%v/D64_WS10_WL80_NW100_P2_Q%%q"^
-                --q %%q 
+                --q %%q --id_col new_id --group_col sarea --longitude_col lng --latitude_col lat 
             )                        
         )
     )

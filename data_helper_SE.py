@@ -230,7 +230,7 @@ if __name__ == "__main__":
         # 建立區域內連結
         print("number of nodes: {}".format(df.shape[0]))
 
-        if args.use_group & (len(group_use_ls) != 1): 
+        if args.use_group: 
             df_AB = get_one_way_edge(df, group=args.group_col, coor_col=args.coordinate_col, id_col=args.id_col)
         else:
             df_AB = get_one_way_edge(df, group=None, coor_col=args.coordinate_col, id_col=args.id_col)

@@ -1,0 +1,1 @@
+python data_helper_route_ditance.py --file_path data/train_data/spot_info_id_table.csv --output_folder data/route_bicycle_time --vehicle_type bike
