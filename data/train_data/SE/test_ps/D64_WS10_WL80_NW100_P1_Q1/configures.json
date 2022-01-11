@@ -1,0 +1,21 @@
+{
+  "file_path": "data/train_data/spot_info_id_table.csv",
+  "output_folder": "data/train_data/SE/test_ps/D64_WS10_WL80_NW100_P1_Q1",
+  "id_col": "new_id",
+  "group_col": "sarea",
+  "group": null,
+  "use_group": false,
+  "coordinate_col": null,
+  "longitude_col": "lng",
+  "latitude_col": "lat",
+  "distance_method": "linear distance",
+  "adj_threshold": 0.1,
+  "is_directed": true,
+  "p": 1.0,
+  "q": 1,
+  "num_walks": 100,
+  "walk_length": 80,
+  "dimensions": 64,
+  "window_size": 10,
+  "itertime": 1000
+}
