@@ -69,6 +69,19 @@ python data_helper_SE.py \
 ```
 
 ### Step4: train GMAN model
+`cpu`
+```shell
+python train.py --time_slot 10 --num_his 5 --num_pred 1 --batch_size 6 \
+        --max_epoch 100 --patience 100 --learning_rate 0.001 \
+        --traffic_file data/train_data/data.h5 \
+        --SE_file data/train_data/SE/basic/SE.txt \
+        --model_file ./output/basic/model.pkl \
+        --log_file ./output/basic/log.txt \
+        --output_folder ./output/basic \
+        --device cpu
+ ```
+`gpu`
+```shell
 python train.py --time_slot 10 --num_his 5 --num_pred 1 --batch_size 6 \
         --max_epoch 100 --patience 100 --learning_rate 0.001 \
         --traffic_file data/train_data/data.h5 \
@@ -77,7 +90,7 @@ python train.py --time_slot 10 --num_his 5 --num_pred 1 --batch_size 6 \
         --log_file ./output/basic/log.txt \
         --output_folder ./output/basic \
         --device gpu
-        
+```
 ## Model code source
 https://github.com/VincLee8188/GMAN-PyTorch
 ## Citation
