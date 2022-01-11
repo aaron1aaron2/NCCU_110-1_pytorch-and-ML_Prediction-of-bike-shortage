@@ -1,5 +1,5 @@
 # NCCU_110_pytorch-and-ML_Prediction-of-bike-shortage
-🎯 使用在交通的流量預測上很有名的 GMAN 模型，實作台北市 youbike 站點存量的預測。並規劃補給路徑。
+🎯 使用在交通的流量預測上很有名的 GMAN 模型，實作台北市 youbike 站點存量的預測。
 
 🏫 本專案為 **NCCU-pytorch與機器學習(110)** 的課程實作報告。
 
