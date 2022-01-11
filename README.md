@@ -1,5 +1,5 @@
 # NCCU_110_pytorch-and-ML_Prediction-of-bike-shortage
-🎯 使用在交通的流量預測上很有名的 GMAN 模型，實作台北市 youbike 站點存量的預測。並規劃補給路徑。
+🎯 使用在交通的流量預測上很有名的 GMAN 模型，實作台北市 youbike 站點存量的預測。
 
 🏫 本專案為 **NCCU-pytorch與機器學習(110)** 的課程實作報告。
 
@@ -68,7 +68,29 @@ python data_helper_SE.py \
     --adj_threshold 0.1
 ```
 
-
+### Step4: train GMAN model
+`cpu`
+```shell
+python train.py --time_slot 10 --num_his 5 --num_pred 1 --batch_size 6 \
+        --max_epoch 100 --patience 100 --learning_rate 0.001 \
+        --traffic_file data/train_data/data.h5 \
+        --SE_file data/train_data/SE/basic/SE.txt \
+        --model_file ./output/basic/model.pkl \
+        --log_file ./output/basic/log.txt \
+        --output_folder ./output/basic \
+        --device cpu
+ ```
+`gpu`
+```shell
+python train.py --time_slot 10 --num_his 5 --num_pred 1 --batch_size 6 \
+        --max_epoch 100 --patience 100 --learning_rate 0.001 \
+        --traffic_file data/train_data/data.h5 \
+        --SE_file data/train_data/SE/basic/SE.txt \
+        --model_file ./output/basic/model.pkl \
+        --log_file ./output/basic/log.txt \
+        --output_folder ./output/basic \
+        --device gpu
+```
 ## Model code source
 https://github.com/VincLee8188/GMAN-PyTorch
 ## Citation
