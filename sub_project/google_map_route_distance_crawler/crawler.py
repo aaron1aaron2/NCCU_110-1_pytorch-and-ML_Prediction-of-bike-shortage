@@ -22,7 +22,7 @@ from webdriver_manager.chrome import ChromeDriverManager
 ### Tor 切換IP與多開 -> https://hardliver.blogspot.com/2018/03/tor-tor-client.htmls
 
 class crawler:
-    def __init__(self, input_data, tor_path, tor_confs_path, core=1, use_tor=True, chromedriver_path='chromedriver.exe'):
+    def __init__(self, input_data, tor_path, tor_confs_path, core=1, use_tor=True, chromedriver_path='chromedriver.exe', vehicle_type='car'):
         self.core = core # 多開的數量
         self.use = input_data # 原始檔的檔案名稱
         self.use_tor = use_tor
@@ -32,6 +32,8 @@ class crawler:
 
         self.chromedriver = chromedriver_path
         self.output_path = input_data.replace('.csv', '_result.csv').replace('1_','2_')
+        self.vehicle_type_dt = {'car':'0', 'bike':'1', 'walk':'2', 'bus':'3'}
+        self.vehicle_type = self.vehicle_type_dt[vehicle_type]
 
     # 創建Tor的port資料夾
     def tor(self):
@@ -138,7 +140,8 @@ class crawler:
         for v, name in tqdm.tqdm(enumerate(df)):
             minute = []
             count = 0
-            url = 'https://www.google.com.tw/maps/dir/' + str(name) + '/data=!3m1!4b1!4m2!4m1!3e0'
+            name = str(name)
+            url = f'https://www.google.com.tw/maps/dir/{name}/data=!3m1!4b1!4m2!4m1!3e{self.vehicle_type}'
             browser.get(url) #最後一碼為0汽車、2走路
 
             # 最多執行50次，沒有的話則輸出nan，並切換IP
@@ -160,7 +163,7 @@ class crawler:
                     browser.get(url) #最後一碼為0汽車、2走路
 
                 if count == 20:
-                    print(f'[Error] {name} not available')
+                    print(f'[Error] {url} not available')
                     break
                 _ = browser.find_element_by_xpath('//*[@id="section-directions-trip-travel-mode-0"]') #等到找到這個在往下
                 
