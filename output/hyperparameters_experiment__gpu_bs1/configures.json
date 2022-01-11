@@ -15,9 +15,9 @@
   "decay_epoch": 10,
   "traffic_file": "data/train_data/data.h5",
   "SE_file": "data/train_data/SE/basic/SE.txt",
-  "model_file": "$output_folder_root/model.pkl",
-  "log_file": "$output_folder_root/log.txt",
-  "output_folder": "$output_folder_root",
+  "model_file": "./output/hyperparameters_experiment__gpu_bs1/model.pkl",
+  "log_file": "./output/hyperparameters_experiment__gpu_bs1/log.txt",
+  "output_folder": "./output/hyperparameters_experiment__gpu_bs1",
   "view_batch_freq": 100,
   "device": "cuda"
 }
