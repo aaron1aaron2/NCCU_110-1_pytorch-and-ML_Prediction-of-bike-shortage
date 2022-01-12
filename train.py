@@ -31,9 +31,9 @@ def get_args():
     parser = argparse.ArgumentParser()
     parser.add_argument('--time_slot', type=int, default=5,
                         help='a time step is 5 mins')
-    parser.add_argument('--num_his', type=int, default=12,
+    parser.add_argument('--num_his', type=int, default=5,
                         help='history steps')
-    parser.add_argument('--num_pred', type=int, default=12,
+    parser.add_argument('--num_pred', type=int, default=1,
                         help='prediction steps')
 
     parser.add_argument('--L', type=int, default=1,
@@ -50,11 +50,11 @@ def get_args():
     parser.add_argument('--test_ratio', type=float, default=0.2,
                         help='testing set [default : 0.2]')
 
-    parser.add_argument('--batch_size', type=int, default=32, # 5 記憶體 < 4 G
+    parser.add_argument('--batch_size', type=int, default=24,
                         help='batch size')
-    parser.add_argument('--max_epoch', type=int, default=1,
+    parser.add_argument('--max_epoch', type=int, default=50,
                         help='epoch to run')
-    parser.add_argument('--patience', type=int, default=10,
+    parser.add_argument('--patience', type=int, default=50,
                         help='patience for early stop')
     parser.add_argument('--learning_rate', type=float, default=0.001,
                         help='initial learning rate')
