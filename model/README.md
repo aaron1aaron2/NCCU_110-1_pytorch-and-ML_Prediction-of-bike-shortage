@@ -1,5 +1,5 @@
 # PyTorch implementation of GMAN: A Graph Multi-Attention Network for Traffic Prediction
-
+[GMAN model Source](https://github.com/VincLee8188/GMAN-PyTorch)
 
 This is a testing PyTorch version implementation of Graph Multi-Attention Network in the following paper: Chuanpan Zheng, Xiaoliang Fan, Cheng Wang, and Jianzhong Qi. "[GMAN: A Graph Multi-Attention Network for Traffic Prediction](https://arxiv.org/abs/1911.08415)", AAAI2020.
 
