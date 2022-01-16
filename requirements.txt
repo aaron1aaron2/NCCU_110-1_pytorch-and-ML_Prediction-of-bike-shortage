@@ -3,26 +3,20 @@ pandas==1.2.4
 numpy==1.19.5
 tables==3.6.1
 tqdm==4.51.0
-scipy==1.19.5
-requests==2.24.0
-beautifulsoup4==4.9.3
+requests>=2.24.0
+beautifulsoup4>=4.9.3
 
 # Visualization
-matplotlib==3.4.2
-seaborn==0.11.1
+matplotlib>=3.4.2
+seaborn>=0.11.1
 
 # GEO
-folium==0.12.1 # mapping (based on Leaflet in JS)
 geopy==2.1.0 # calculate coordinate distance
 
 # google map route crawler
-selenium==3.141.0
-stem==1.8.0 # tor
+selenium>=3.141.0
 webdriver-manager==3.4.2 # chrome driver
 
 # node2vec
 networkx==2.6.3 # graphs processing tool
 gensim==4.1.2 # word2vec
-
-# path_plan
-ortools==9.0.9048 # Algorithmic tools(google)
