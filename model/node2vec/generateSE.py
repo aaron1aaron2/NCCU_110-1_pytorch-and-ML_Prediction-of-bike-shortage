@@ -8,7 +8,6 @@ import numpy as np
 import networkx as nx
 from gensim.models import Word2Vec
 
-from IPython import embed
 
 class SEDataHelper:
     def __init__(self, is_directed, p, q, 
