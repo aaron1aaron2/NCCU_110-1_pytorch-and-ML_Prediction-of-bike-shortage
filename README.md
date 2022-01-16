@@ -18,7 +18,7 @@
 - [Model code source](#model-code-source)
 - [Citation](#citation)
 
-## Application
+## Flow chart
 
 <p align="center"><img width="70%" src="img/Main_flow_chart.png" /></p>
 
