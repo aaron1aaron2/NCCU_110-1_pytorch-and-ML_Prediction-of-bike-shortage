@@ -53,14 +53,11 @@ def main():
     distance_Table_all = to_whole_Htable(spot.copy(), distance_Table_helf, coor_col='coordinate', id_col='sno')
     distance_Table_all.to_csv(args.output_folder + '/distance_table_all.csv', index=None)
 
-    googlecrawler = crawler.crawler(
-            input_data = os.path.join(args.output_folder, 'distance_table_half.csv'), 
-            tor_path = args.tor_path, 
-            tor_confs_path = os.path.join(args.output_folder, 'tor_config'), 
-            core=args.core,
-            vehicle_type=args.vehicle_type
-            )
-
+    googlecrawler = crawler(
+        input_data=os.path.join(args.output_folder, 'distance_table_half.csv'), 
+        output_path=os.path.join(args.output_folder, 'crawler_back.csv'),
+        vehicle_type=args.vehicle_type
+        )
     googlecrawler.run()
     # 整理資料
 
