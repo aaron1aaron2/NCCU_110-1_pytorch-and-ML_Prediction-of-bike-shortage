@@ -23,7 +23,16 @@
 
 <p align="center"><img width="90%" src="report/fig/fig15.Final-vs-basic_PerformanceComparison.png" /></p>
 
-# Quick Start
+# Requirements
+- pytorch==1.10.1 
+  - cuda 11.3
+  - Please go to the [official website](https://pytorch.org/) to download package
+- beautifulsoup4>=4.9.3
+- geopy==2.1.0 # calculate coordinate distance
+- networkx==2.6.3 # graphs processing tool
+- gensim==4.1.2 # word2vec
+- [more...](requirements.txt)
+# Usages
 ## Step1: Get youbike data
 ### 爬取 youbike 資料
 ```
