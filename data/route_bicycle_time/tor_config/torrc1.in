@@ -1,4 +1,0 @@
-SocksPort 9050
-ControlPort 9051
-DataDirectory H:\我的雲端硬碟\Class\Pytorch與機器學習\期末報告\Prediction_of_bike-shortage_and_plan-routes\data/route_bicycle_time\tor_config
-ExitNodes {tw}, {uk}, {us}
