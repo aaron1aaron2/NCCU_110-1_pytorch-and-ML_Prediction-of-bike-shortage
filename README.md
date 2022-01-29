@@ -1,4 +1,4 @@
-# NCCU_110_pytorch-and-ML_Prediction-of-bike-shortage
+# NCCU 110 - pytorch 與機器學習 - Prediction of bike shortage
 [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/drive/1pKtPBxNOrka8d6sO-Ouw0j7dfzrQO3O_?usp=sharing)
 
 🎯 使用在交通的流量預測上很有名的 GMAN 模型，實作台北市 youbike 站點存量的預測。
