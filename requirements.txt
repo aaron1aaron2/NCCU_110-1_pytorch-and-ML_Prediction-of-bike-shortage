@@ -20,3 +20,6 @@ webdriver-manager==3.4.2 # chrome driver
 # node2vec
 networkx==2.6.3 # graphs processing tool
 gensim==4.1.2 # word2vec
+
+# plan route
+ortools==9.2.9972
