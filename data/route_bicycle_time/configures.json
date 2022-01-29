@@ -2,6 +2,5 @@
   "file_path": "data/train_data/spot_info_id_table.csv",
   "output_folder": "data/route_bicycle_time",
   "vehicle_type": "bike",
-  "core": 1,
-  "tor_path": "sub_project/path_planing/tor-win32-0.4.5.8/Tor/tor.exe"
+  "select_route": "distance"
 }
